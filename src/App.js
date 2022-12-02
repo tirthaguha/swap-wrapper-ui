@@ -1,24 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import { Box, Grommet, Main } from 'grommet';
+import theme from './theme';
+
+import Login from "./components/page/login"
+import Home from './components/page/home';
+
+import HeaderBar from './components/organism/header-bar';
+
+
+import {Routes, Route, BrowserRouter } from "react-router-dom"
+
+// import { RentContextProvider, WithContext } from "./state/rentContext";
+import {UserContextProvider, WithContext} from "./state/context";
+
+const LoginComponent = () => {
+  const WrappedLogin = WithContext(Login);
+  return (
+      <WrappedLogin />
+  );
+};
+
+const HomeComponent = ()=>{
+  const WrappedHome = WithContext(Home);
+  return (<WrappedHome />)
+}
+
+const HeaderComponent = ()=>{
+  const WrappedHeader = WithContext(HeaderBar);
+  return (<WrappedHeader />)
+}
 
 function App() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Grommet theme={theme}>
+      <UserContextProvider>
+          <HeaderComponent />
+          <Main>
+            <Box margin="medium">
+              <BrowserRouter>
+                <Routes>
+                  <Route exact path="/" element={<LoginComponent />} />
+                  <Route path="/home" element={<HomeComponent />} />
+                </Routes>
+              </BrowserRouter>
+            </Box>
+          </Main>
+        </UserContextProvider>
+    </Grommet>
   );
 }
 
