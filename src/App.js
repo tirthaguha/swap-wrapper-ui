@@ -11,6 +11,8 @@ import {Routes, Route, BrowserRouter } from "react-router-dom"
 
 // import { RentContextProvider, WithContext } from "./state/rentContext";
 import {UserContextProvider, WithContext} from "./state/context";
+import Blotter from './components/page/blotter';
+import Create from './components/page/create';
 
 const LoginComponent = () => {
   const WrappedLogin = WithContext(Login);
@@ -24,13 +26,23 @@ const HomeComponent = ()=>{
   return (<WrappedHome />)
 }
 
+const BlotterComponent = ()=>{
+  const WrappedHome = WithContext(Blotter);
+  return (<WrappedHome />)
+}
+
+const CreateComponent = ()=>{
+  const WrappedHome = WithContext(Create);
+  return (<WrappedHome />)
+}
+
 const HeaderComponent = ()=>{
   const WrappedHeader = WithContext(HeaderBar);
   return (<WrappedHeader />)
 }
 
 function App() {
-  
+
   return (
     <Grommet theme={theme}>
       <UserContextProvider>
@@ -41,6 +53,8 @@ function App() {
                 <Routes>
                   <Route exact path="/" element={<LoginComponent />} />
                   <Route path="/home" element={<HomeComponent />} />
+                  <Route path="/blotter" element={<BlotterComponent />} />
+                  <Route path="/create" element={<CreateComponent />} />
                 </Routes>
               </BrowserRouter>
             </Box>

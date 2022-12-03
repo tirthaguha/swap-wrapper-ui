@@ -42,7 +42,7 @@ const Login = ({dispatch, state})=>{
         dispatch({ type: ACTIONS.SET_USERNAME, data: value.username });
         dispatch({ type: ACTIONS.SET_TOKEN, data: response.token });
         navigate("/home");
-        
+
       }}
     >
       <FormField name="username" htmlFor="text-input-username" label="Username">
@@ -58,7 +58,7 @@ const Login = ({dispatch, state})=>{
     </Form>
   </PageContent>
 </Page>)
-  
+
 }
 
 export default Login;
